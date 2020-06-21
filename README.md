@@ -1,6 +1,6 @@
 # KDE Connect Remote Keyboard
 
-This is a simple way to interact with the KDE Connect "remote keyboard" plugin. It displays a small window into which inputs are made, and mirrored to the remote device. No text field is shown, this may be added as an option in the future.
+This is a simple way to interact with the KDE Connect "remote keyboard" plugin. It displays a small window into which inputs are made, and mirrored to the remote device. No text field is shown, this may be added as an option in the future. Personally, I didn't feel it was necessary as I can simply look at the other device's display.
 
 ## Usage
 
