@@ -1,0 +1,12 @@
+language: go
+go:
+  - 1.14.4
+script: make
+deploy:
+  provider: releases
+  file: remotekeyboard
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  on:
+    branch: master
+    tags: true
