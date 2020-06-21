@@ -14,12 +14,18 @@ If no devices have the plugin enabled, or the device passed in arguments doesn't
 
 An interface with which to choose a device from a list view may be added in the future.
 
-## Building
+## Installing
+
+A pre-built binary can be found from the [releases](https://github.com/zaxutic/kdeconnect-remotekeyboard/releases) page, and added to your `PATH`. Alternatively, you can build from source.
+
+### Building From Source
 
 ```sh
 # Build with reduced file size
 make
+sudo make install
 
 # or without
 go build remotekeyboard.go
+sudo make install
 ```
