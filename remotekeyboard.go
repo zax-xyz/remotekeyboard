@@ -3,7 +3,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/godbus/dbus"
@@ -47,7 +46,8 @@ func main() {
 	// Start dbus connection
 	conn, err := dbus.ConnectSessionBus()
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, "Could not connect to session bus:", err)
+		os.Exit(1)
 	}
 	defer conn.Close()
 
@@ -91,7 +91,8 @@ func getPath(conn *dbus.Conn) string {
 		obj := conn.Object("org.kde.kdeconnect", "/modules/kdeconnect")
 		err := obj.Call("org.kde.kdeconnect.daemon.devices", 0).Store(&devices)
 		if err != nil {
-			panic(err)
+			fmt.Fprintln(os.Stderr, "Could not get devices:", err)
+			os.Exit(1)
 		}
 
 		// Check if any device has the plugin enabled
@@ -128,7 +129,8 @@ func checkPlugin(conn *dbus.Conn, device string) (bool, string) {
 		"kdeconnect_remotekeyboard",
 	).Store(&enabled)
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, "Could not check plugin:", err)
+		os.Exit(1)
 	}
 
 	return enabled, path
@@ -141,7 +143,8 @@ func createWindow(bus *dbus.BusObject) {
 	// Create window
 	win, err := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	if err != nil {
-		log.Fatal("Unable to create window:", err)
+		fmt.Fprintln(os.Stderr, "Unable to create window:", err)
+		os.Exit(1)
 	}
 
 	win.SetTitle("KDE Connect Remote Keyboard")
@@ -178,7 +181,8 @@ func createWindow(bus *dbus.BusObject) {
 			char, special, shift, ctrl, alt,
 		)
 		if call.Err != nil {
-			panic(call.Err)
+			fmt.Fprintln(os.Stderr, "Could not send keypress:", call.Err)
+			os.Exit(1)
 		}
 	})
 
