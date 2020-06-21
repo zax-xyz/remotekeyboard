@@ -20,7 +20,12 @@ A pre-built binary can be found from the [releases](https://github.com/zaxutic/k
 
 ### Building From Source
 
+This requires `go` to be installed.
+
 ```sh
+# Get dependencies
+go get ./...
+
 # Build with reduced file size
 make
 sudo make install
