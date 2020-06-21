@@ -71,7 +71,7 @@ func main() {
 // Gets a device ID from command line arguments if possible, or gets the first
 // available device with the plugin enabled, and returns its D-Bus path
 func getPath(conn *dbus.Conn) string {
-	if len(os.Args) > 2 {
+	if len(os.Args) > 1 {
 		// Get ID from command line arguments
 		device := os.Args[1]
 
