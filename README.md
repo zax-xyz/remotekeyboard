@@ -12,6 +12,8 @@ The first argument given to the program is used as the device ID (used by KDE Co
 
 If no devices have the plugin enabled, or the device passed in arguments doesn't have the plugin enabled, then the program will quit with the error message `Remote keyboard plugin not enabled!`.
 
+An interface with which to choose a device from a list view may be added in the future.
+
 ## Building
 
 ```sh
