@@ -1,8 +1,13 @@
 language: go
 go:
   - 1.14.4
+addons:
+  apt:
+    packages:
+      - gtk+3.0
+      - libgtk-3-dev
+      - xvfb
 install:
-  - sudo apt install libgtk-3-dev libcairo2-dev libglib2.0-dev
   - go get ./...
 script: make
 deploy:
