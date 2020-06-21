@@ -170,8 +170,8 @@ func createWindow(bus *dbus.BusObject) {
 		// The event state uses bits for each modifier
 		state := eventKey.State()
 		shift := (state & 1) != 0
-		ctrl := (state & 4) != 0
-		alt := (state & 8) != 0
+		ctrl := (state >> 2 & 1) != 0
+		alt := (state >> 3 & 1) != 0
 
 		// Send input to remote device
 		call := (*bus).Call(
