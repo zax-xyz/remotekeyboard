@@ -2,7 +2,7 @@ language: go
 go:
   - 1.14.4
 install:
-  - go get
+  - go get ${gobuild_args} ./...
 script: make
 deploy:
   provider: releases
