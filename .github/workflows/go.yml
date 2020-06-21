@@ -28,8 +28,7 @@ jobs:
               dep ensure
           fi
       - name: Build project
-        run: |
-          go build -ldflags "-s -w" remotekeyboard.go && upx remotekeyboard
+        run: make
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
