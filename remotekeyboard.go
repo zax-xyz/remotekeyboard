@@ -160,9 +160,7 @@ func createWindow(bus *dbus.BusObject) {
 		// Get input character
 		var char string
 		if gdk.KeyvalToUnicode(keyVal) != 0 {
-			char = fmt.Sprintf("%c", keyVal)
-		} else {
-			char = ""
+			char = string(keyVal)
 		}
 
 		special := specialKeys[keyVal]
