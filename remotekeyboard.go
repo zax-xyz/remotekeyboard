@@ -157,19 +157,27 @@ func createWindow(bus *dbus.BusObject) {
 		eventKey := gdk.EventKeyNewFromEvent(event)
 		keyVal := eventKey.KeyVal()
 
-		// Get input character
-		var char string
-		if gdk.KeyvalToUnicode(keyVal) != 0 {
-			char = string(keyVal)
-		}
-
-		special := specialKeys[keyVal]
-
 		// The event state uses bits for each modifier
 		state := eventKey.State()
 		shift := (state & 1) != 0
 		ctrl := (state >> 2 & 1) != 0
 		alt := (state >> 3 & 1) != 0
+
+		// Get input character
+		var char string
+		var special int
+		if keyVal == gdk.KEY_Return && shift {
+			// Shift+enter to input a new line - behaves differently in some
+			// applicatins
+			char = "\n"
+		} else {
+			unicode := gdk.KeyvalToUnicode(keyVal)
+			if unicode != 0 {
+				char = string(unicode)
+			}
+
+			special = specialKeys[keyVal]
+		}
 
 		// Send input to remote device
 		call := (*bus).Call(
